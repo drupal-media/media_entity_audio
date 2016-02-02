@@ -38,14 +38,9 @@ class Audio extends MediaTypeBase {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityManager $entity_manager
    *   Entity manager service.
-   * @param \Drupal\Core\Image\ImageFactory $image_factory
-   *   The image factory.
    * @param \Drupal\Core\Config\Config $config
    *   Media entity config object.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityManager $entity_manager, Config $config) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_manager, $config);
-  }
 
   /**
    * {@inheritdoc}
@@ -74,50 +69,31 @@ class Audio extends MediaTypeBase {
         $options[$field_name] = $field->getLabel();
       }
     }
-	$form['source_field'] = array(
+    $form['source_field'] = array(
       '#type' => 'select',
       '#title' => t('Field with source information'),
       '#description' => t('Field on media entity that stores Audio file.'),
       '#default_value' => empty($this->configuration['source_field']) ? NULL : $this->configuration['source_field'],
       '#options' => $options,
     );
-    
+
     return $form;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function validate(MediaInterface $media) {
-    // This should be handled by Drupal core.
-  }
-
-  
-  /**
-   * {@inheritdoc}
-   */
   public function providedFields() {
-    
+
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getField(MediaInterface $media, $name) {
-	  
-	$source_field = $this->configuration['source_field'];
-    $property_name = $media->{$source_field}->first()->mainPropertyName();
-    
-    
-    $file = $this->entityManager->getStorage('file')->load($media->{$source_field}->first()->{$property_name});
-    
-    $uri = $file->getFileUri();
+  public function getField(MediaInterface $media , $name) {
 
-   
-    return FALSE;
   }
-  
-  
+
   /**
    * {@inheritdoc}
    */
@@ -134,5 +110,11 @@ class Audio extends MediaTypeBase {
 
     return $file->getFileUri();
   }
-  
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getField(MediaInterface $media, $name) {
+
+  }
 }

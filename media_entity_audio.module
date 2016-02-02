@@ -1,17 +1,28 @@
 <?php
+/**
+ * @file
+ * Media entity for audio files.
+ */
+
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Entity;
 use Drupal\file\Entity\File;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\media_entity_audio\Plugin\Field\FieldFormatter\AudioPlayerHTML5;
 
-/** 
-* Implements hook_theme().
-*/
+/**
+ * Implements hook_theme().
+ */
 function media_entity_audio_theme() {
   return array(
     'media_file_formatter' => array(
-      'variables' => array('file' => NULL, 'description' => NULL, 'attributes' => array(), 'value'=>NULL, 'extravalue'=>NULL ),
+      'variables' => array(
+        'file' => NULL,
+        'description' => NULL,
+        'attributes' => array(),
+        'value' => NULL,
+        'extravalue' => NULL,
+      ),
     ),
   );
 }
@@ -21,24 +32,21 @@ function media_entity_audio_theme() {
  * Implements template_preprocess_media_file_formatter().
  */
 function template_preprocess_media_file_formatter(&$vars) {
- //template_preprocess_file_link($vars);
   $file = $vars['file'];
   $options = array();
   $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
-  //var_dump($file->fid);
-  //print_r($file_entity);
   $url = file_create_url($file_entity->getFileUri());
   $mimetype = $file_entity->getMimeType();
-  
-  if($mimetype=='audio/mpeg'){
-	$vars['mimetype'] = 'audio/mpeg';  
-   }
-  if($mimetype=='audio/x-wav'){
-	$vars['mimetype'] = 'audio/wav';  
-   }
-   if($mimetype=='audio/ogg'){
-	$vars['mimetype'] = 'audio/ogg';  
-   }
+
+  if ($mimetype == 'audio/mpeg') {
+    $vars['mimetype'] = 'audio/mpeg';
+  }
+  if ($mimetype == 'audio/x-wav') {
+    $vars['mimetype'] = 'audio/wav';
+  }
+  if ($mimetype == 'audio/ogg') {
+    $vars['mimetype'] = 'audio/ogg';
+  }
   $vars['media_link'] = $url;
-  
+
 }

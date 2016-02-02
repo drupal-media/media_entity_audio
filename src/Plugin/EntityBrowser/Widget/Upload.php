@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @file
  * Contains \Drupal\media_entity_audio\Plugin\EntityBrowser\Widget\Upload.
  */
 

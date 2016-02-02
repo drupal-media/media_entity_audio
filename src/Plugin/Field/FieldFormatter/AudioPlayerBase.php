@@ -20,10 +20,7 @@ abstract class AudioPlayerBase extends FileFormatterBase {
    * {@inheritdoc}
    */
   protected function getEntitiesToView(EntityReferenceFieldItemListInterface $items) {
-	  
     return parent::getEntitiesToView($items);
-  
   }
-  
 
 }

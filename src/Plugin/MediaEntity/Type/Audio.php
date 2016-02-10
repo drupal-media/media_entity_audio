@@ -28,35 +28,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class Audio extends MediaTypeBase {
 
   /**
-   * Constructs a new class instance.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityManager $entity_manager
-   *   Entity manager service.
-   * @param \Drupal\Core\Config\Config $config
-   *   Media entity config object.
-   */
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity.manager'),
-      $container->get('config.factory')->get('media_entity.settings')
-    );
-  }
-
-
-  /**
    * {@inheritdoc}
    */
   public function settingsForm(MediaBundleInterface $bundle) {
@@ -64,7 +35,7 @@ class Audio extends MediaTypeBase {
 
     $options = array();
     $allowed_field_types = array('file');
-    foreach ($this->entityManager->getFieldDefinitions('media', $bundle->id()) as $field_name => $field) {
+    foreach ($this->entityFieldManager->getFieldDefinitions('media', $bundle->id()) as $field_name => $field) {
       if (in_array($field->getType(), $allowed_field_types) && !$field->getFieldStorageDefinition()->isBaseField()) {
         $options[$field_name] = $field->getLabel();
       }
@@ -98,11 +69,10 @@ class Audio extends MediaTypeBase {
    * {@inheritdoc}
    */
   public function thumbnail(MediaInterface $media) {
-
     $source_field = $this->configuration['source_field'];
 
     /** @var \Drupal\file\FileInterface $file */
-    $file = $this->entityManager->getStorage('file')->load($media->{$source_field}->target_id);
+    $file = $this->entityTypeManager->getStorage('file')->load($media->{$source_field}->target_id);
 
     if (!$file) {
       return $this->config->get('icon_base') . '/image.png';
@@ -111,10 +81,4 @@ class Audio extends MediaTypeBase {
     return $file->getFileUri();
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getField(MediaInterface $media, $name) {
-
-  }
 }

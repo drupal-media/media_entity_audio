@@ -1,14 +1,8 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\media_entity_audio\Plugin\Field\FieldFormatter\AudioPlayerBase.
- */
-
 namespace Drupal\media_entity_audio\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
-use Drupal\field\FieldConfigInterface;
 use Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase;
 
 /**
@@ -19,8 +13,8 @@ abstract class AudioPlayerBase extends FileFormatterBase {
   /**
    * {@inheritdoc}
    */
-  protected function getEntitiesToView(EntityReferenceFieldItemListInterface $items) {
-    return parent::getEntitiesToView($items);
+  protected function getEntitiesToView(EntityReferenceFieldItemListInterface $items, $langcode) {
+    return parent::getEntitiesToView($items, $langcode);
   }
 
 }

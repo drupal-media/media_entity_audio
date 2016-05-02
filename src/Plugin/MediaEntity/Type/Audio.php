@@ -1,20 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\media_entity_audio\Plugin\MediaEntity\Type\Audio.
- */
-
 namespace Drupal\media_entity_audio\Plugin\MediaEntity\Type;
 
-use Drupal\Core\Config\Config;
-use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\Core\Entity\EntityManager;
 use Drupal\media_entity\MediaBundleInterface;
 use Drupal\media_entity\MediaInterface;
 use Drupal\media_entity\MediaTypeBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 
 /**
  * Provides media type plugin for Audio.
@@ -55,14 +45,14 @@ class Audio extends MediaTypeBase {
    * {@inheritdoc}
    */
   public function providedFields() {
-
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
   public function getField(MediaInterface $media , $name) {
-
+    return FALSE;
   }
 
   /**

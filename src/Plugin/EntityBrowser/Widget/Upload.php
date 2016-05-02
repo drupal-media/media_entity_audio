@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\media_entity_audio\Plugin\EntityBrowser\Widget\Upload.
- */
-
 namespace Drupal\media_entity_audio\Plugin\EntityBrowser\Widget;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -71,7 +66,7 @@ class Upload extends FileUpload {
       $audios[] = $audio;
     }
 
-    $this->selectEntities($audios);
+    $this->selectEntities($audios, $form_state);
     $this->clearFormValues($element, $form_state);
   }
 

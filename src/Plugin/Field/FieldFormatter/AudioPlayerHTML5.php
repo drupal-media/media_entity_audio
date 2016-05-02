@@ -1,23 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\media_entity_audio\Plugin\Field\FieldFormatter\AudioPlayerHTML5.
- */
-
 namespace Drupal\media_entity_audio\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\UrlGeneratorInterface;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Url;
-use Drupal\Core\Utility\LinkGeneratorInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Cache\Cache;
 
 /**
  * Plugin implementation of the 'Audio Player (HTML5)' formatter.

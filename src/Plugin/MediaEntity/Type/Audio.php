@@ -76,4 +76,19 @@ class Audio extends MediaTypeBase {
     return $this->getDefaultThumbnail();
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getDefaultName(MediaInterface $media) {
+    // The default name will be the filename of the source_field, if present.
+    $source_field = $this->configuration['source_field'];
+
+    /** @var \Drupal\file\FileInterface $file */
+    if (!empty($source_field) && ($file = $this->entityTypeManager->getStorage('file')->load($media->{$source_field}->target_id))) {
+      return $file->getFilename();
+    }
+
+    return parent::getDefaultName($media);
+  }
+
 }

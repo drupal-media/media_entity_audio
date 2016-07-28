@@ -33,11 +33,11 @@ class Upload extends FileUpload {
   public function getForm(array &$original_form, FormStateInterface $form_state, array $aditional_widget_parameters) {
     /** @var \Drupal\media_entity\MediaBundleInterface $bundle */
     if (!$this->configuration['media bundle'] || !($bundle = $this->entityTypeManager->getStorage('media_bundle')->load($this->configuration['media bundle']))) {
-      return ['#markup' => t('The media bundle is not configured correctly.')];
+      return ['#markup' => $this->t('The media bundle is not configured correctly.')];
     }
 
     if ($bundle->getType()->getPluginId() != 'audio') {
-      return ['#markup' => t('The configured bundle is not using audio plugin.')];
+      return ['#markup' => $this->t('The configured bundle is not using audio plugin.')];
     }
 
     $form = parent::getForm($original_form, $form_state, $aditional_widget_parameters);

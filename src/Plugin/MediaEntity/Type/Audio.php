@@ -33,8 +33,8 @@ class Audio extends MediaTypeBase {
 
     $form['source_field'] = [
       '#type' => 'select',
-      '#title' => t('Field with source information'),
-      '#description' => t('Field on media entity that stores Audio file. You can create a bundle without selecting a value for this dropdown initially. This dropdown can be populated after adding fields to the bundle.'),
+      '#title' => $this->t('Field with source information'),
+      '#description' => $this->t('Field on media entity that stores Audio file. You can create a bundle without selecting a value for this dropdown initially. This dropdown can be populated after adding fields to the bundle.'),
       '#default_value' => empty($this->configuration['source_field']) ? NULL : $this->configuration['source_field'],
       '#options' => $options,
     ];

@@ -70,7 +70,7 @@ class Audio extends MediaTypeBase {
     $source_field = $this->configuration['source_field'];
 
     /** @var \Drupal\file\FileInterface $file */
-    if ($file = $this->entityTypeManager->getStorage('file')->load($media->{$source_field}->target_id)) {
+    if ($file = $media->{$source_field}->entity) {
       return $this->config->get('icon_base') . '/image.png';
     }
 
@@ -85,7 +85,7 @@ class Audio extends MediaTypeBase {
     $source_field = $this->configuration['source_field'];
 
     /** @var \Drupal\file\FileInterface $file */
-    if (!empty($source_field) && ($file = $this->entityTypeManager->getStorage('file')->load($media->{$source_field}->target_id))) {
+    if (!empty($source_field) && ($file = $media->{$source_field}->entity)) {
       return $file->getFilename();
     }
 

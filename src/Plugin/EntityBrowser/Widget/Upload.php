@@ -59,12 +59,13 @@ class Upload extends FileUpload {
 
     $audios = [];
     foreach ($files as $file) {
-      /** @var \Drupal\media_entity\MediaInterface $image */
-      $image = $this->entityTypeManager->getStorage('media')->create([
+      /** @var \Drupal\media_entity\MediaInterface $audio */
+      $audio = $this->entityTypeManager->getStorage('media')->create([
         'bundle' => $bundle->id(),
         $bundle->getTypeConfiguration()['source_field'] => $file,
       ]);
-      $audios[] = $image;
+
+      $audios[] = $audio;
     }
 
     return $audios;
@@ -75,13 +76,13 @@ class Upload extends FileUpload {
    */
   public function submit(array &$element, array &$form, FormStateInterface $form_state) {
     if (!empty($form_state->getTriggeringElement()['#eb_widget_main_submit'])) {
-      $images = $this->prepareEntities($form, $form_state);
+      $audios = $this->prepareEntities($form, $form_state);
       array_walk(
-        $images,
+        $audios,
         function (MediaInterface $media) { $media->save(); }
       );
 
-      $this->selectEntities($images, $form_state);
+      $this->selectEntities($audios, $form_state);
       $this->clearFormValues($element, $form_state);
     }
   }

@@ -53,6 +53,27 @@ class AudioPlayerHTML5 extends AudioPlayerBase {
   /**
    * {@inheritdoc}
    */
+  public function settingsSummary() {
+    $summary = [];
+    $provide_download_link = $this->getSetting('provide_download_link');
+    $audio_attributes = $this->getSetting('audio_attributes');
+
+    if ($provide_download_link) {
+      $summary[] = $this->t('Download link provided.');
+    }
+
+    if ($audio_attributes) {
+      $summary[] = $this->t('Audio tag attributes: @tags.', [
+        '@tags' => $audio_attributes,
+      ]);
+    }
+
+    return $summary;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = array();
     $provide_download_link = $this->getSetting('provide_download_link');

@@ -78,7 +78,7 @@ class AudioPlayerHTML5 extends AudioPlayerBase {
     $elements = array();
     $provide_download_link = $this->getSetting('provide_download_link');
     $audio_attributes = $this->getSetting('audio_attributes');
-    foreach ($this->getEntitiesToView($items) as $delta => $file) {
+    foreach ($this->getEntitiesToView($items, $langcode) as $delta => $file) {
       $item = $file->_referringItem;
       $elements[$delta] = array(
         '#theme' => 'media_file_formatter',

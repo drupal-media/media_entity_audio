@@ -77,10 +77,9 @@ class Upload extends FileUpload {
   public function submit(array &$element, array &$form, FormStateInterface $form_state) {
     if (!empty($form_state->getTriggeringElement()['#eb_widget_main_submit'])) {
       $audios = $this->prepareEntities($form, $form_state);
-      array_walk(
-        $audios,
-        function (MediaInterface $media) { $media->save(); }
-      );
+      array_walk($audios, function (MediaInterface $media) {
+        $media->save();
+      });
 
       $this->selectEntities($audios, $form_state);
       $this->clearFormValues($element, $form_state);

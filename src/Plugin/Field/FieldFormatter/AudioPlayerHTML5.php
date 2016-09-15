@@ -43,7 +43,7 @@ class AudioPlayerHTML5 extends AudioPlayerBase {
     $form['audio_attributes'] = [
       '#title' => $this->t('Audio Tag Attributes'),
       '#type' => 'textfield',
-      '#description' => 'Give values Like controls preload="auto" loop',
+      '#description' => $this->t('Give values Like controls preload="auto" loop.'),
       '#default_value' => $this->getSetting('audio_attributes'),
     ];
 

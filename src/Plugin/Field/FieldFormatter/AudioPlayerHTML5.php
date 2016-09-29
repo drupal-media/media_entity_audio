@@ -23,7 +23,7 @@ class AudioPlayerHTML5 extends AudioPlayerBase {
    */
   public static function defaultSettings() {
     $settings['provide_download_link'] = TRUE;
-    $settings['audio_attributes'] = '';
+    $settings['audio_attributes'] = 'controls';
 
     return $settings;
   }
@@ -43,7 +43,7 @@ class AudioPlayerHTML5 extends AudioPlayerBase {
     $form['audio_attributes'] = [
       '#title' => $this->t('Audio Tag Attributes'),
       '#type' => 'textfield',
-      '#description' => $this->t('Give values Like controls preload="auto" loop.'),
+      '#description' => $this->t('Give a space-separeted list of values like: <em>\'controls preload="auto" loop\'</em>. Note that if you remove the <em>\'controls\'</em> tag, your player will not show up.'),
       '#default_value' => $this->getSetting('audio_attributes'),
     ];
 
